@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2021 a las 23:20:54
+-- Tiempo de generación: 27-04-2021 a las 01:44:57
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sis_venta`
+-- Base de datos: `calle_real`
 --
 
 DELIMITER $$
@@ -137,9 +137,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idcliente`, `dni`, `nombre`, `telefono`, `direccion`, `usuario_id`) VALUES
-(1, 123, 'Juan López', 33478569, 'Huehuetenango', 1),
-(6, 147, 'Alex Tzul', 44789568, 'xela', 11),
-(7, 7894, 'Fernando Martínez', 33012478, 'Quetzaltenando', 11);
+(1, 123, 'Juan Carlos Mendez', 34585698, 'Escuintla', 1),
+(2, 456, 'Luis Juárez ', 69855986, 'Quetzaltenango', 1),
+(3, 23, 'Fernando Martínez', 33024558, 'Escuintla', 11);
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `dni`, `nombre`, `razon_social`, `telefono`, `email`, `direccion`, `igv`) VALUES
-(1, 2580, 'Restaurante de comida típica Calle Real', 'punto venta', 77250397, 'restaurantecallereal@gmail.com', '4ta calle D12-09 zona 1 Quetzaltenango', '1.18');
+(1, 7896, 'Restaurante de comida típica Calle Real', 'Punto de venta', 77250397, 'restaurantereal@gmail.com', '4ta calle D12-09 zona 1 Quetzaltenango', '1.18');
 
 -- --------------------------------------------------------
 
@@ -188,17 +188,10 @@ INSERT INTO `detallefactura` (`correlativo`, `nofactura`, `codproducto`, `cantid
 (2, 1, 2, 5, '10.00'),
 (4, 2, 1, 5, '50.00'),
 (5, 3, 4, 1, '13.00'),
-(6, 4, 1, 1, '50.00'),
-(7, 5, 1, 1, '50.00'),
-(8, 6, 1, 1, '50.00'),
-(9, 6, 3, 1, '16.00'),
-(11, 7, 6, 1, '50.00'),
-(12, 7, 7, 1, '20.00'),
-(13, 7, 8, 1, '20.00'),
-(14, 8, 6, 1, '50.00'),
-(15, 9, 8, 1, '20.00'),
-(16, 9, 7, 3, '20.00'),
-(17, 9, 6, 3, '50.00');
+(6, 4, 3, 5, '20.00'),
+(7, 5, 3, 2, '20.00'),
+(8, 6, 1, 5, '25.00'),
+(9, 7, 4, 2, '23.00');
 
 -- --------------------------------------------------------
 
@@ -213,14 +206,6 @@ CREATE TABLE `detalle_temp` (
   `cantidad` int(11) NOT NULL,
   `precio_venta` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `detalle_temp`
---
-
-INSERT INTO `detalle_temp` (`correlativo`, `token_user`, `codproducto`, `cantidad`, `precio_venta`) VALUES
-(8, 'c4ca4238a0b923820dcc509a6f75849b', 1, 1, '50.00'),
-(9, 'c4ca4238a0b923820dcc509a6f75849b', 1, 1, '50.00');
 
 -- --------------------------------------------------------
 
@@ -257,8 +242,13 @@ CREATE TABLE `factura` (
 --
 
 INSERT INTO `factura` (`nofactura`, `fecha`, `usuario`, `codcliente`, `totalfactura`, `estado`) VALUES
-(8, '2021-04-04 15:17:02', 11, 6, '50.00', 1),
-(9, '2021-04-04 15:18:54', 11, 7, '230.00', 1);
+(1, '2021-03-09 10:20:19', 1, 1, '550.00', 1),
+(2, '2021-03-09 10:30:47', 1, 1, '250.00', 1),
+(3, '2021-03-09 10:33:05', 1, 2, '13.00', 1),
+(4, '2021-04-26 17:25:20', 11, 1, '100.00', 1),
+(5, '2021-04-26 17:32:23', 11, 3, '40.00', 1),
+(6, '2021-04-26 17:41:23', 11, 2, '125.00', 1),
+(7, '2021-04-26 17:43:44', 11, 2, '46.00', 1);
 
 -- --------------------------------------------------------
 
@@ -281,10 +271,10 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`codproducto`, `codigo`, `descripcion`, `proveedor`, `precio`, `existencia`, `usuario_id`) VALUES
-(6, '123', 'Desayuno tradicional', 1, '50.00', 45, 11),
-(7, '456', 'Omelet', 1, '20.00', 41, 11),
-(8, '789', 'Huevos Rancheros', 1, '20.00', 53, 11),
-(9, '1234', 'Desayuno Tipíco ', 1, '25.00', 30, 11);
+(1, '12345', 'Desayuno típico ', 1, '25.00', 80, 1),
+(2, '321', 'Desayuno Tradicional ', 1, '20.00', 0, 1),
+(3, '001', 'Pepián ', 1, '20.00', 1, 1),
+(4, '987', 'caldo de gallina', 1, '23.00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -306,7 +296,7 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`codproveedor`, `proveedor`, `contacto`, `telefono`, `direccion`, `usuario_id`) VALUES
-(1, 'distribuidores', '123456', 77142584, 'Guatemala', 1);
+(1, 'productos lácteos ', '123456', 33008456, 'Quetzaltenango', 1);
 
 -- --------------------------------------------------------
 
@@ -347,8 +337,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `correo`, `usuario`, `clave`, `rol`) VALUES
-(10, 'Gustavo', 'elmergustavo79@gmail.com', 'gustavo', '96f5dfa7e894c719ee14e74f76ed0193', 2),
-(11, 'Julio Francisco', 'juliofrancisco@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+(11, 'Julio Francisco', 'juliofrancisco@gmail.com', 'administrador', '202cb962ac59075b964b07152d234b70', 1);
 
 --
 -- Índices para tablas volcadas
@@ -422,7 +411,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
@@ -434,13 +423,13 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `detallefactura`
 --
 ALTER TABLE `detallefactura`
-  MODIFY `correlativo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `correlativo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  MODIFY `correlativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `correlativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `entradas`
@@ -452,13 +441,13 @@ ALTER TABLE `entradas`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `nofactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `nofactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `codproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `codproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
