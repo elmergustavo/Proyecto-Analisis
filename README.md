@@ -1,5 +1,8 @@
 # Proyecto Analisis
 
+pagina para realizar los diagramas
+https://app.diagrams.net/
+
 se imlementó un punto de venta de un restaurante 
 
 Login del sistema
