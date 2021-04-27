@@ -125,8 +125,9 @@ if ($result_data > 0) {
 				<!-- Nav Item - Productos Collapse Menu -->
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-						<i class="fas fa-fw fa-wrench"></i>
-						<span>Platillos</span>
+
+						<i class="fas fa-utensils"></i>
+						<span> Platillos</span>
 						<i class="fas fa-angle-down fa-lg float-right"></i>
 					</a>
 					<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
